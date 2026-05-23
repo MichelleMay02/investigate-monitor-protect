@@ -1,7 +1,6 @@
-baseURL = "https://michellemay02.github.io/investigate-monitor-protect/"
+baseURL = "/investigate-monitor-protect/"
 languageCode = "en-us"
 title = "Investigate Monitor Protect"
-theme = "hugo-split-gallery-main"
 
-[params]
-description = "Investigate Monitor Protect"
+canonifyURLs = false
+relativeURLs = true
