@@ -1,6 +1,7 @@
-baseURL = "/investigate-monitor-protect/"
+baseURL = "http://localhost:1313/"
 languageCode = "en-us"
 title = "Investigate Monitor Protect"
+theme = "hugo-split-gallery-main"
 
-canonifyURLs = false
-relativeURLs = true
+[params]
+description = "Investigate Monitor Protect"
