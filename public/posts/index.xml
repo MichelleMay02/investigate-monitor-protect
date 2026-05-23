@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My hikes on Investigate Monitor Protect</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in My hikes on Investigate Monitor Protect</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lauvitel lake</title>
+      <link>http://localhost:1313/posts/lake-lauvitel/</link>
+      <pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/lake-lauvitel/</guid>
+      <description>&lt;p&gt;My favorite lake&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Grand Veymont</title>
+      <link>http://localhost:1313/posts/grand-veymont/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/grand-veymont/</guid>
+      <description>&lt;p&gt;Seeing my first ibex!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Muzelle lake and Lauvitel lake</title>
+      <link>http://localhost:1313/posts/lakes-muzelle-lauvitel/</link>
+      <pubDate>Sun, 30 Jul 2017 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/lakes-muzelle-lauvitel/</guid>
+      <description>&lt;p&gt;Hike with a night stay at the refuge de la Muzelle.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

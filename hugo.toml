@@ -1,4 +1,4 @@
-baseURL = "https://michellemay02.github.io/investigate-monitor-protect/"
+baseURL = "http://localhost:1313/"
 languageCode = "en-us"
 title = "Investigate Monitor Protect"
 theme = "hugo-split-gallery-main"
