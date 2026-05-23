@@ -1,0 +1,19 @@
+{{ range slice "bootstrap/*.css" "fancybox/*.css" "leaflet/*.css" "font-awesome/css/*.min.css" "leaflet.awesome-markers/*.css" "izmir/*.css" }}
+{{ with resources.GetMatch (printf "/vendor/%s" .) }}<link rel="stylesheet" href="{{ .Permalink }}"/>{{ end }}
+{{ end }}
+<!-- Hack to include fonts & images -->
+{{ range resources.Match "/vendor/font-awesome/fonts/*" }}<!-- {{ .Permalink }} -->{{ end }}
+{{ range resources.Match "/vendor/leaflet/images/*" }}<!-- {{ .Permalink }} -->{{ end }}
+{{ range resources.Match "/vendor/leaflet.awesome-markers/images/*" }}<!-- {{ .Permalink }} -->{{ end }}
+
+{{ with resources.GetMatch "/hugo-split-gallery/main.css" }}<link rel="stylesheet" href="{{ .Permalink }}"/>{{ end }}
+{{ if (default true .Site.Params.useDefaultColors) }}
+{{ with resources.GetMatch "/hugo-split-gallery/colors.css" }}<link rel="stylesheet" href="{{ .Permalink }}"/>{{ end }}
+{{ end }}
+{{ if (default true .Site.Params.useDefaultFonts) }}
+{{ with resources.GetMatch "/hugo-split-gallery/fonts.css" }}<link rel="stylesheet" href="{{ .Permalink }}"/>{{ end }}
+{{ end }}
+
+{{ range .Site.Params.customCss }}
+<link rel="stylesheet" href="{{ relURL (.) }}"/>
+{{ end }}

@@ -1,0 +1,17 @@
+{{ define "title" }}
+{{/* Taxonomy pages don't have .Params.Title */}}
+{{ default .Title (i18n .Data.Plural) | plainify }} | {{ .Site.Title | plainify }}
+{{ end }}
+{{ define "title_html" }}
+{{/* Taxonomy pages don't have .Params.Title */}}
+{{ $icon := partial "icons/gettaxonomy.html" .Data.Plural }}
+{{ if $icon }}<i class="fa fa-{{ $icon }} fa-fw"></i>{{ end }}{{ default .Title (i18n .Data.Plural) }}
+{{ end }}
+
+{{ define "gallery" }}
+{{ partial "grid.html" . }}
+{{ end }}
+
+{{ define "main_content" }}
+{{ partial "list.html" . }}
+{{ end }}

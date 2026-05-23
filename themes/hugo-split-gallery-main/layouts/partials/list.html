@@ -1,0 +1,53 @@
+{{ $leafpages := partial "getleafpages.html" . }}
+
+{{ $showDate := false }}
+{{ $showCount := false }}
+{{ $showSection := false }}
+{{ $translate := false }}
+{{ $maxlistlen := false }}
+{{ $columns := default 1 ($.Site.Params.columns) }}
+
+{{ if eq .Kind "page" }}
+    {{ warnf "Should not be called here"}}
+{{ else if eq .Kind "term" }}
+    {{ $showDate = true }}
+    {{ $showSection = gt (len $.Site.Sections) 1 }}
+{{ else if eq .Kind "taxonomy" }}
+    {{ $showCount = true }}
+    {{ $translate = true }}
+{{ else if eq .Kind "section" }}
+    {{ $showDate = true }}
+{{ else if eq .Kind "home" }}
+    {{ $showDate = true }}
+    {{ $showSection = gt (len $.Site.Sections) 1 }}
+    {{ if $.Site.Params.paginate }}
+        {{ $maxlistlen = $.Site.Params.paginate }}
+    {{ end }}
+{{ end }}
+
+{{ if gt $columns 1 }}
+  {{ if lt (len $leafpages) (default 10 $.Site.Params.columnsMinItems) }}
+    {{ $columns = 1 }}
+  {{ end }}
+{{ end }}
+
+<ul style="columns: {{ $columns }};">
+    {{ range $idx, $val := $leafpages }}
+        {{if or (eq $maxlistlen false) (lt $idx $maxlistlen) }}
+            <li>
+                <a href="{{ .Permalink }}">
+                {{ if and $showDate .Date }}{{ .Date.Format "2006-01-02" }} | {{ end }}
+                {{ if $translate }}
+                    {{ default .Title (i18n (printf "%s-%s" .Data.Singular .Title)) }}
+                {{ else }}
+                    {{ .Title }}
+                {{ end }}
+                </a>
+                {{ if $showCount }}
+                    {{ len .Data.Pages }}
+                {{ end }}
+            {{ if $showSection }}({{ .Parent.Title }}){{ end }}
+            </li>
+        {{ end }}
+    {{ end }}
+</ul>

@@ -1,0 +1,24 @@
+{{ range slice "bootstrap/*.js" "jquery/*.js" "fancybox/*.js" "leaflet/*.js" "togeojson/*.js" "leaflet.awesome-markers/*.min.js" }}
+{{ $secureJS := resources.GetMatch (printf "/vendor/%s" .) | resources.Fingerprint "sha512" }}
+<script src="{{ $secureJS.Permalink }}" type="text/javascript" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{ end }}
+
+{{ if (default false ($.Site.Params.enableDownloadAll)) }}
+{{ range slice "jszip/*.js" "jszip-utils/*.js" "file-saver/*.js" }}
+{{ $secureJS := resources.GetMatch (printf "/vendor/%s" .) | resources.Fingerprint "sha512" }}
+<script src="{{ $secureJS.Permalink }}" type="text/javascript" integrity="{{ $secureJS.Data.Integrity }}"></script>
+{{ end }}
+{{ end }}
+
+{{ with resources.GetMatch "/hugo-split-gallery/map.js" }}<script src="{{ .Permalink }}"></script>{{ end }}
+{{ if (default false ($.Site.Params.enableDownloadAll)) }}
+{{ with resources.GetMatch "/hugo-split-gallery/zip.js" }}<script src="{{ .Permalink }}"></script>{{ end }}
+{{ end }}
+
+{{ $fancyboxParams := resources.GetMatch "/hugo-split-gallery/fancybox.js" | resources.ExecuteAsTemplate "hugo-split-gallery/fancybox.js" . }}
+<script src="{{ $fancyboxParams.Permalink }}"></script>
+{{ with resources.GetMatch (printf "/hugo-split-gallery/fancybox.%s.js" .Site.Language.Lang) }}<script src="{{ .Permalink }}"></script>{{ end }}
+
+{{ range .Site.Params.customJs }}
+<script src="{{ relURL (.) }}"></script>
+{{ end }}

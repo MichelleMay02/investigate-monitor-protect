@@ -1,0 +1,7 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "Investigate Monitor Protect"
+theme = "hugo-split-gallery-main"
+
+[params]
+description = "Investigate Monitor Protect"

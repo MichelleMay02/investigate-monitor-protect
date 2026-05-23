@@ -1,0 +1,10 @@
+{{ $icon := false }}
+{{ $taxonomy_term := . }}
+
+{{ with site.Params.taxonomies }}
+    {{ with index . $taxonomy_term }}
+        {{ $icon = index . "icon" }}
+    {{ end }}
+{{ end }}
+
+{{ return $icon }}

@@ -1,0 +1,24 @@
+{{ define "gallery" }}
+{{ $featured_image := partial "featureimage/plain.html" . }}
+
+<div class="col-lg-6 p-0" id="gallery-panel" style="background-image: url('{{ $featured_image }}');">
+  <div class="container-fluid h-100 p-0">
+  </div>
+</div>
+{{ end }}
+
+{{ define "main_content" }}
+{{ .Content }}
+{{ end }}
+
+{{ define "lists" }}
+{{ if .Date }}
+<div class="col">
+  <ul class="list-unstyled" id="list-metadata">
+    <li><i class="fa fa-file fa-fw"></i> {{ i18n "publishedAt" (.Date.Format "2006-01-02") }}</li>
+  </ul>
+</div>
+{{ end }}
+
+{{ partial "seealso.html" . }}
+{{ end }}

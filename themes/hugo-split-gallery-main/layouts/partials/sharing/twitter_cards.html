@@ -1,0 +1,40 @@
+{{- /* Edited from original template for using featured images */ -}}
+{{- $featured_image := false -}}
+{{- if .IsPage }}
+{{- $featured_image = partial "featureimage/plain.html" . -}}
+{{- else -}}
+{{- $leafpages := partial "getleafpages.html" . -}}
+{{- $leafpage := partial "getleafpage.html" . -}}
+{{- $featured_image = partial "featureimage/plain.html" $leafpage -}}
+{{- end -}}
+{{- if $featured_image -}}
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="{{ $featured_image }}"/>
+{{- end -}}
+
+{{- with or .Title site.Title site.Params.title | plainify }}
+  <meta name="twitter:title" content="{{ . }}">
+{{- end }}
+
+{{- with or .Description .Summary site.Params.description | plainify | htmlUnescape }}
+  <meta name="twitter:description" content="{{ trim . "\n\r\t " }}">
+{{- end }}
+
+{{- $twitterSite := "" }}
+{{- $social := false -}}
+{{- if le "0.124" hugo.Version }}
+  {{ $social = site.Params.social }}
+{{- else }}
+  {{ $social = .Site.Social }}
+{{- end }}
+{{- with $social }}
+  {{- if reflect.IsMap . }}
+    {{- with .twitter }}
+      {{- $content := . }}
+      {{- if not (strings.HasPrefix . "@") }}
+        {{- $content = printf "@%v" . }}
+      {{- end }}
+      <meta name="twitter:site" content="{{ $content }}">
+    {{- end }}
+  {{- end }}
+{{- end }}

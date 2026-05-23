@@ -1,0 +1,15 @@
+{{ $page := . }}
+{{- $firstLanguage := false -}}
+{{- if le "0.127" hugo.Version }}
+{{- $firstLanguage = $.Sites.Default.Language.Lang }}
+{{- else }}
+{{- $firstLanguage = $.Sites.First.Language.Lang }}
+{{- end }}
+{{ if .IsTranslated }}
+    {{ range .Translations }}
+        {{ if eq .Lang $firstLanguage }}
+          {{ $page = . }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ return $page }}

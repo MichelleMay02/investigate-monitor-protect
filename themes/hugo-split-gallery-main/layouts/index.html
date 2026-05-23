@@ -1,0 +1,40 @@
+{{ define "gallery" }}
+{{ partial "grid.html" . }}
+{{ end }}
+
+{{ define "main_content" }}
+{{ partial "map/list.html" . }}
+{{ partial "list.html" . }}
+{{ end }}
+
+{{ define "lists" }}
+  {{ if gt (len $.Site.Sections) 1 }}
+  <div class="col" id="sections">
+    <h3><i class="fa fa-folder-o fa-fw"></i> {{ i18n "sections" }}</h3>
+    <ul>
+    {{ range $.Site.Sections }}
+      <li><a href="{{ .Permalink }}">{{ .Title }}</a> {{ len .Pages }}</li>
+    {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+
+  {{ range where .Site.Pages "Kind" "taxonomy" }}
+    {{ $icon := partial "icons/gettaxonomy.html" .Data.Plural }}
+    {{ $key := .Data.Singular }}
+    {{ if gt (len .Data.Terms) 0 }}
+      <div class="col" id="taxonomy-{{ $key }}">
+        <h3>
+          <a href="{{ .Permalink }}">
+            {{ if $icon }}<i class="fa fa-{{ $icon }} fa-fw"></i>{{ end }}{{ default .Data.Plural (i18n .Data.Plural) | humanize }}
+          </a>
+        </h3>
+        <ul>
+          {{ range .Data.Terms.Alphabetical }}
+          <li><a href="{{ .Page.Permalink }}">{{ default .Page.Title (i18n (printf "%s-%s" $key .Page.Title)) }}</a> {{ .Count }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,5 @@
+.DS_Store
+exampleSite/resources
+exampleSite/public
+public
+node_modules
